@@ -1,0 +1,64 @@
+﻿@page "/EmployeeDetails/{Id:int}";
+@if (curEmp != null)
+{
+    
+<h3>EmployeeDetails</h3>
+<div class="form-group">
+    <label class="col-form-label"> Employee Id </label>
+    <label class="form-control">@curEmp.Id</label>
+</div>
+
+<div class="form-group">
+    <label class="col-form-label"> First Name </label>
+    <label class="form-control">@curEmp.FirstName</label>
+</div>
+
+<div class="form-group row">
+    <label class="col-form-label"> Last Name </label>
+    <label class="form-control"> @curEmp.LastName </label>
+</div>
+
+<div class="form-group row">
+    <label class="col-form-label"> Birthdate </label>
+    <label class="form-control"> @curEmp.BirthDate.ToShortDateString() </label>
+</div>
+
+<div class="form-group row">
+    <label class="col-form-label"> Email </label>
+    <label class="form-control"> @curEmp.Email </label>
+</div>
+
+<div class="form-group row">
+    <label class="col-form-label"> Phone Number </label>
+    <label class="form-control"> @curEmp.PhoneNumber </label>
+</div>
+
+<div class="form-group row">
+    <label class="col-form-label"> Gender </label>
+    <label class="form-control"> @curEmp.Gender </label>
+</div>
+
+
+<div class="form-group row">
+    <label class="col-form-label"> Country </label>
+        <label class="form-control"> @country.Name </label>
+</div>
+<br />
+<br />
+
+<center>
+    <a href="@($"/EmployeeOverView")" class=" btn btn-info">Back To Data</a>
+    <button class="btn btn-danger" type="button" @onclick="@Delete_Click">
+        Delete
+    </button>
+</center>
+<br />
+<br />
+}
+else{
+         <div class="alert alert-primary">Loading.....</div>
+}
+
+@code {
+   
+}

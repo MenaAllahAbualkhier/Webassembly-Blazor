@@ -1,0 +1,57 @@
+﻿@page "/EmployeeOverView";
+
+@if(Employees!=null){
+<h3>EmployeeOverView</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>PhoneNumber</th>
+            <th>Email</th>
+            <th>Details</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Employees)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.FirstName @item.LastName</td>
+                <td>@item.PhoneNumber</td>
+                <td>@item.Email</td>
+                <td><a href="@($"EmployeeDetails/{item.Id}")" class="btn btn-danger">Details</a></td>
+                <td><a href="@($"AddEditEmployee/{item.Id}")" class="btn btn-danger">Edit</a></td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<center>
+    <a href="@($"AddEditEmployee")" class="btn btn-primary">Add employee</a>
+
+</center>
+
+}
+else{
+    <div class="alert alert-primary">Loading.....</div>
+}
+@code {
+    IEnumerable<EmployeeVM> Employees;
+    List<Country> Countries;
+
+    [Inject]
+    public IEmployeeDataService EmployeeDataService { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        Employees = await EmployeeDataService.GetAllEmployee();
+
+        
+    }
+   
+
+}
